@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion versions.target_sdk
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.github.jacubsz.authorizationplugin"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
         versionCode 1
         versionName "1.0"
 
