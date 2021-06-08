@@ -1,5 +1,4 @@
 rootProject.name = "SampleApplication"
 include ':app'
-include ':authorizationplugin'
 include ':persistence'
 include ':businesslogiccentre'
