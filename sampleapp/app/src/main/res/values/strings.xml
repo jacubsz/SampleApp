@@ -7,6 +7,8 @@
     <string name="add_new_todo_item">Add new todo item</string>
     <string name="add_new_item_button_label">Add new</string>
     <string name="add_new_todo_item_hint">What is your task?</string>
+    <string name="add_new_item_error">Please provide a task description</string>
+
     <string name="about_header">Author: Jakub Szostakowski</string>
     <string name="about_year">2021</string>
 </resources>
