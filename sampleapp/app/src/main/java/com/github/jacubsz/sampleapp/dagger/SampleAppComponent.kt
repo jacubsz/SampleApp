@@ -1,6 +1,7 @@
 package com.github.jacubsz.sampleapp.dagger
 
 import com.github.jacubsz.sampleapp.SampleApplication
+import com.github.jacubsz.sampleapp.persistence.plugin.AppPersistencePluginModule
 import com.github.jacubsz.sampleapp.view.ActivityModule
 import com.github.jacubsz.sampleapp.viewmodel.ViewModelModule
 import dagger.Component
@@ -13,14 +14,20 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
 
+        AppModule::class,
+
         ActivityModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+
+        AppPersistencePluginModule::class
     ]
 )
 interface SampleAppComponent : AndroidInjector<SampleApplication> {
-    
+
     @Component.Factory
     interface Factory {
-        fun create(): SampleAppComponent
+        fun create(
+            appModule: AppModule
+        ): SampleAppComponent
     }
 }

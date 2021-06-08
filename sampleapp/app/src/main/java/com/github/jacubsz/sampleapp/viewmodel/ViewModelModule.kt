@@ -15,7 +15,12 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(EmptyViewModel::class)
-    abstract fun bindEmptyViewModel(viewModel: EmptyViewModel): ViewModel
+    @ViewModelKey(AddNewItemViewModel::class)
+    abstract fun bindAddNewItemViewModel(viewModel: AddNewItemViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ToDoListViewModel::class)
+    abstract fun bindToDoListViewModel(viewModel: ToDoListViewModel): ViewModel
 
 }
