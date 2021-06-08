@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 
 @Dao
-interface ToDoItemDao {
+internal interface ToDoItemDao {
 
     @Query("SELECT * FROM todoitem")
     fun getAll(): Flowable<List<ToDoItem>>
