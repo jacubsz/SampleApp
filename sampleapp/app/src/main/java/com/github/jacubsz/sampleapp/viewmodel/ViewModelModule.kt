@@ -23,4 +23,9 @@ abstract class ViewModelModule {
     @ViewModelKey(AddNewItemViewModel::class)
     abstract fun bindAddNewItemViewModel(viewModel: AddNewItemViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ToDoListViewModel::class)
+    abstract fun bindToDoListViewModel(viewModel: ToDoListViewModel): ViewModel
+
 }
