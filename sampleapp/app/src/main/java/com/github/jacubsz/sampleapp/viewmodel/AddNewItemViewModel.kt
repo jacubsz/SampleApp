@@ -22,7 +22,7 @@ class AddNewItemViewModel @Inject constructor(
     override fun init() {}
 
     fun onAddNewItemClick() {
-        val newItem = ToDoItem(0, content.get() ?: "", false)
+        val newItem = ToDoItem(null, content.get() ?: "", false)
         toDoItemsDataSource
             .insertItems(listOf(newItem))
             .dispatch(Thread.IO, Thread.IO)

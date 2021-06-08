@@ -7,7 +7,10 @@ import com.github.jacubsz.sampleapp.persistence.model.ToDoItemDao
 
 const val DATABASE_NAME = "todo-items-database"
 
-@Database(entities = [ToDoItem::class], version = 1)
+@Database(
+    version = 2,
+    entities = [ToDoItem::class]
+)
 abstract class ToDoItemsDatabase : RoomDatabase() {
 
     abstract fun toDoItemDao(): ToDoItemDao
