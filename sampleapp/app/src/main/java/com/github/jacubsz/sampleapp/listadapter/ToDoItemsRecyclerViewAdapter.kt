@@ -12,8 +12,11 @@ import com.github.jacubsz.sampleapp.databinding.ItemTodoBinding
 
 class ToDoItemsRecyclerViewAdapter(
     private val dataList: MutableList<ToDoItem> = mutableListOf(),
-    private val onItemClick: (ToDoItem) -> Unit = { _ -> }
+    private val onItemClick: (ToDoItem) -> Unit = { _ -> },
+    private val onItemSwipedOut: (ToDoItem) -> Unit = { _ -> }
 ) : RecyclerView.Adapter<ToDoItemsRecyclerViewAdapter.ViewHolder>() {
+
+    private var lastDeletedItemBackup: ToDoItem? = null
 
     fun update(newItems: List<ToDoItem>) {
         val diffUtil = ToDoItemsDiffUtil(dataList, newItems)
@@ -36,6 +39,16 @@ class ToDoItemsRecyclerViewAdapter(
         holder.bind(dataList[position])
 
     override fun getItemCount() = dataList.size
+
+    fun deleteItemWithBackup(position: Int) {
+        val itemBackup = dataList[position]
+        dataList.removeAt(position)
+        notifyItemRemoved(position)
+        lastDeletedItemBackup = itemBackup
+        onItemSwipedOut(itemBackup)
+    }
+
+    fun getLastDeletedItem(): ToDoItem? = lastDeletedItemBackup
 
     class ViewHolder(
         private val binding: ItemTodoBinding,
