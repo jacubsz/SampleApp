@@ -35,7 +35,7 @@ class ToDoListViewModel @Inject constructor(
             .addTo(disposables)
     }
 
-    fun removeItem(item: ToDoItem) {
+    fun deleteItem(item: ToDoItem) {
         toDoItemsDataSource.deleteItem(item)
             .dispatch(Thread.IO, Thread.IO)
             .subscribe()

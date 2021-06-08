@@ -83,15 +83,15 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
         }
 
     private fun onRecyclerViewItemSwipedOut(item: ToDoItem) {
-        viewModel.removeItem(item)
+        viewModel.deleteItem(item)
         Snackbar
             .make(
                 viewBinding.root,
-                R.string.removed_item_undo_header,
+                R.string.deleted_item_undo_header,
                 Snackbar.LENGTH_LONG
             )
             .run {
-                setAction(R.string.removed_item_undo_button_label) {
+                setAction(R.string.deleted_item_undo_button_label) {
                     toDoItemsRecyclerViewAdapter.getLastDeletedItem()?.let { toDoItem ->
                         viewModel.insertItem(toDoItem)
                     }
