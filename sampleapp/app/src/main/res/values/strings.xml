@@ -11,4 +11,7 @@
 
     <string name="about_header">Author: Jakub Szostakowski</string>
     <string name="about_year">2021</string>
+
+    <string name="removed_item_undo_header">Item removed</string>
+    <string name="removed_item_undo_button_label">Undo</string>
 </resources>

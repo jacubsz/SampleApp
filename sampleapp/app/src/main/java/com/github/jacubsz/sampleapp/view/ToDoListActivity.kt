@@ -5,13 +5,17 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.jacubsz.sampleapp.R
+import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
 import com.github.jacubsz.sampleapp.databinding.ActivityTodoListBinding
+import com.github.jacubsz.sampleapp.listadapter.SwipeToDeleteCallback
 import com.github.jacubsz.sampleapp.listadapter.ToDoItemsRecyclerViewAdapter
 import com.github.jacubsz.sampleapp.rxutils.Thread
 import com.github.jacubsz.sampleapp.rxutils.dispatch
 import com.github.jacubsz.sampleapp.viewmodel.ToDoListViewModel
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.addTo
 
 class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>(
@@ -41,7 +45,13 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
     }
 
     private fun initRecyclerView() {
-        toDoItemsRecyclerViewAdapter = ToDoItemsRecyclerViewAdapter(onItemClick = viewModel::updateItem)
+        toDoItemsRecyclerViewAdapter = ToDoItemsRecyclerViewAdapter(
+            onItemClick = viewModel::updateItem,
+            onItemSwipedOut = ::onRecyclerViewItemSwipedOut
+        )
+
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(toDoItemsRecyclerViewAdapter))
+        itemTouchHelper.attachToRecyclerView(viewBinding.nestedView.recyclerviewItems)
 
         viewBinding.nestedView.recyclerviewItems.run {
             adapter = toDoItemsRecyclerViewAdapter
@@ -71,4 +81,22 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
             R.id.action_about -> launchAboutActivity()
             else -> super.onOptionsItemSelected(item)
         }
+
+    private fun onRecyclerViewItemSwipedOut(item: ToDoItem) {
+        viewModel.removeItem(item)
+        Snackbar
+            .make(
+                viewBinding.root,
+                R.string.removed_item_undo_header,
+                Snackbar.LENGTH_LONG
+            )
+            .run {
+                setAction(R.string.removed_item_undo_button_label) {
+                    toDoItemsRecyclerViewAdapter.getLastDeletedItem()?.let { toDoItem ->
+                        viewModel.insertItem(toDoItem)
+                    }
+                }
+                show()
+            }
+    }
 }
