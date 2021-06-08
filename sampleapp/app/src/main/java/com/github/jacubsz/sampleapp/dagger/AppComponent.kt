@@ -22,12 +22,12 @@ import javax.inject.Singleton
         AppPersistencePluginModule::class
     ]
 )
-interface SampleAppComponent : AndroidInjector<SampleApplication> {
+interface AppComponent : AndroidInjector<SampleApplication> {
 
     @Component.Factory
     interface Factory {
         fun create(
             appModule: AppModule
-        ): SampleAppComponent
+        ): AppComponent
     }
 }
