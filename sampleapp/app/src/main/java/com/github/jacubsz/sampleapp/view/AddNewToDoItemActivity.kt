@@ -1,5 +1,7 @@
 package com.github.jacubsz.sampleapp.view
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.github.jacubsz.sampleapp.R
 import com.github.jacubsz.sampleapp.databinding.ActivityAddNewTodoItemBinding
@@ -12,6 +14,10 @@ class AddNewToDoItemActivity : AppActivity<ActivityAddNewTodoItemBinding, AddNew
     R.layout.activity_add_new_todo_item,
     AddNewItemViewModel::class
 ) {
+
+    companion object {
+        fun newIntent(context: Context): Intent = Intent(context, AddNewToDoItemActivity::class.java)
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         closeOnNewItemAdded()

@@ -7,7 +7,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeScrollingActivity(): ScrollingActivity
+    abstract fun contributeScrollingActivity(): ToDoListActivity
 
     @ContributesAndroidInjector
     abstract fun constributeAddNewToDoItemActivity(): AddNewToDoItemActivity
