@@ -26,6 +26,11 @@
             android:label="@string/add_new_todo_item"
             android:theme="@style/Theme.SampleApplication.NoActionBar" />
 
+        <activity
+            android:name=".view.AboutActivity"
+            android:label="@string/about_header"
+            android:theme="@style/Theme.SampleApplication.NoActionBar" />
+
     </application>
 
 </manifest>

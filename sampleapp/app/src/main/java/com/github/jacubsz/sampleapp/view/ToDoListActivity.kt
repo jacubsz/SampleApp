@@ -25,6 +25,8 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
         }
     }
 
+    private val startAboutActivityForResult = registerForActivityResult(StartActivityForResult()) { }
+
     private lateinit var toDoItemsRecyclerViewAdapter: ToDoItemsRecyclerViewAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -57,15 +59,16 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
             .addTo(disposables)
     }
 
+    private fun launchAboutActivity(): Boolean = startAboutActivityForResult.launch(AboutActivity.newIntent(this)).let { true }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_scrolling, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.action_about -> launchAboutActivity()
             else -> super.onOptionsItemSelected(item)
         }
-    }
 }
