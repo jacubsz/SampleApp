@@ -11,7 +11,7 @@ const val DATABASE_NAME = "todo-items-database"
     version = 2,
     entities = [ToDoItem::class]
 )
-abstract class ToDoItemsDatabase : RoomDatabase() {
+internal abstract class ToDoItemsDatabase : RoomDatabase() {
 
     abstract fun toDoItemDao(): ToDoItemDao
 

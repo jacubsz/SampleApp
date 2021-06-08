@@ -8,12 +8,13 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import javax.inject.Inject
 
-class AppPersistencePlugin @Inject constructor(
+class AppPersistencePlugin @Inject internal constructor(
     private val toDoItemsDao: ToDoItemDao
 ) : ToDoItemsDataSource {
 
     override fun getItems(): Flowable<List<ToDoItem>> =
-        toDoItemsDao.getAll().map { items -> items.map { it.toToDoItem() } }
+        toDoItemsDao.getAll()
+            .map { items -> items.map { it.toToDoItem() } }
 
     override fun updateItem(item: ToDoItem): Completable =
         toDoItemsDao.update(item.toToDoItem())
@@ -23,4 +24,5 @@ class AppPersistencePlugin @Inject constructor(
 
     override fun deleteItem(item: ToDoItem): Completable =
         toDoItemsDao.delete(item.toToDoItem())
+
 }
