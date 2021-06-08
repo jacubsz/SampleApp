@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -9,7 +9,6 @@ android {
     buildToolsVersion versions.buildtool
 
     defaultConfig {
-        applicationId "com.github.jacubsz.sampleapp.persistence"
         minSdkVersion versions.min_sdk
         targetSdkVersion versions.target_sdk
         versionCode 1
@@ -40,6 +39,8 @@ android {
 }
 
 dependencies {
+
+    api project(":businesslogiccentre")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "androidx.core:core-ktx:$versions.ktx"
