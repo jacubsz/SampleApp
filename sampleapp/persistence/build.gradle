@@ -51,7 +51,8 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    implementation "androidx.room:room-runtime:$versions.room"
+    // api due to the dagger injection supertype resolving issue
+    api "androidx.room:room-runtime:$versions.room"
     implementation "androidx.room:room-rxjava3:$versions.room"
     annotationProcessor "androidx.room:room-compiler:$versions.room"
     kapt "androidx.room:room-compiler:$versions.room"
