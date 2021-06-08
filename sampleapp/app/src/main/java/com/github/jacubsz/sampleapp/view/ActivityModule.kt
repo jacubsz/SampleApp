@@ -9,4 +9,7 @@ abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun contributeScrollingActivity(): ScrollingActivity
 
+    @ContributesAndroidInjector
+    abstract fun constributeAddNewToDoItemActivity(): AddNewToDoItemActivity
+
 }

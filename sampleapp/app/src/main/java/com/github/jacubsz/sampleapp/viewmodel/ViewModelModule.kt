@@ -18,4 +18,9 @@ abstract class ViewModelModule {
     @ViewModelKey(EmptyViewModel::class)
     abstract fun bindEmptyViewModel(viewModel: EmptyViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddNewItemViewModel::class)
+    abstract fun bindAddNewItemViewModel(viewModel: AddNewItemViewModel): ViewModel
+
 }
