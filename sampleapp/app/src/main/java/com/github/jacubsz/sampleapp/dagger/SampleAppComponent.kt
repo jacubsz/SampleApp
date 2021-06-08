@@ -14,6 +14,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
 
+        AppModule::class,
+
         ActivityModule::class,
         ViewModelModule::class,
 
@@ -21,9 +23,11 @@ import javax.inject.Singleton
     ]
 )
 interface SampleAppComponent : AndroidInjector<SampleApplication> {
-    
+
     @Component.Factory
     interface Factory {
-        fun create(): SampleAppComponent
+        fun create(
+            appModule: AppModule
+        ): SampleAppComponent
     }
 }

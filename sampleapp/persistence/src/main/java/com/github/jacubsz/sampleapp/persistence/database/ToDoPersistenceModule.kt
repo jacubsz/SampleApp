@@ -2,6 +2,7 @@ package com.github.jacubsz.sampleapp.persistence.database
 
 import android.content.Context
 import androidx.room.Room
+import com.github.jacubsz.sampleapp.persistence.model.ToDoItemDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,7 +12,7 @@ class ToDoPersistenceModule() {
 
     @Singleton
     @Provides
-    fun provideToDoItemsDatabase(applicationContext: Context) =
+    fun provideToDoItemsDatabase(applicationContext: Context): ToDoItemsDatabase =
         Room.databaseBuilder(
             applicationContext,
             ToDoItemsDatabase::class.java,
@@ -20,7 +21,7 @@ class ToDoPersistenceModule() {
 
     @Singleton
     @Provides
-    fun provideToDoItemDao(database: ToDoItemsDatabase) =
+    fun provideToDoItemDao(database: ToDoItemsDatabase): ToDoItemDao =
         database.toDoItemDao()
 
 }
