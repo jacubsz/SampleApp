@@ -2,6 +2,9 @@ package com.github.jacubsz.sampleapp.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.Observable
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import com.github.jacubsz.sampleapp.BR
 import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
@@ -35,12 +38,46 @@ class ToDoItemsRecyclerViewAdapter(
         private val onItemClick: (ToDoItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        val checked = ObservableBoolean()
+        val content = ObservableField<String>()
+
         fun bind(item: ToDoItem) {
+            setObservableFieldsFromItem(item)
+            initItemClick()
+            addCallbackOnCheckedChange(item)
+            setBindingItem()
+        }
+
+        private fun setObservableFieldsFromItem(item: ToDoItem) {
+            checked.set(item.checked)
+            content.set(item.content)
+        }
+
+        private fun initItemClick() {
             binding.root.setOnClickListener {
                 binding.checkbox.toggle()
-                onItemClick(item)
             }
-            binding.setVariable(BR.item, item)
+        }
+
+        private fun addCallbackOnCheckedChange(item: ToDoItem) {
+            checked.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+                override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                    callOnItemClick(item)
+                }
+            })
+        }
+
+        private fun callOnItemClick(item: ToDoItem) {
+            val updatedItem = ToDoItem(
+                item.id,
+                item.content,
+                checked.get()
+            )
+            onItemClick(updatedItem)
+        }
+
+        private fun setBindingItem() {
+            binding.setVariable(BR.item, this)
         }
     }
 }

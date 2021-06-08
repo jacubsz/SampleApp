@@ -24,6 +24,17 @@ class ToDoListViewModel @Inject constructor(
         loadDataOnStartAndReload()
     }
 
+    fun refreshList() {
+        reloadSignal.onNext(Unit)
+    }
+
+    fun updateItem(item: ToDoItem) {
+        toDoItemsDataSource.updateItem(item)
+            .dispatch(Thread.IO, Thread.IO)
+            .subscribe()
+            .addTo(disposables)
+    }
+
     private fun loadDataOnStartAndReload() {
         reloadSignal.startWithItem(Unit)
             .toFlowable(BackpressureStrategy.LATEST)

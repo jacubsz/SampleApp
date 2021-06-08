@@ -21,12 +21,11 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
 
     private val startAddNewItemActivityForResult = registerForActivityResult(StartActivityForResult()) { activityResult ->
         if (activityResult.resultCode == RESULT_OK) {
-            //TODO: refresh the view
+            viewModel.refreshList()
         }
     }
 
-    // TODO: add on click action to save new state to data source
-    private val toDoItemsRecyclerViewAdapter = ToDoItemsRecyclerViewAdapter()
+    private lateinit var toDoItemsRecyclerViewAdapter: ToDoItemsRecyclerViewAdapter
 
     override fun initView(savedInstanceState: Bundle?) {
         setSupportActionBar(viewBinding.toolbar)
@@ -40,6 +39,8 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
     }
 
     private fun initRecyclerView() {
+        toDoItemsRecyclerViewAdapter = ToDoItemsRecyclerViewAdapter(onItemClick = viewModel::updateItem)
+
         viewBinding.nestedView.recyclerviewItems.run {
             adapter = toDoItemsRecyclerViewAdapter
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
