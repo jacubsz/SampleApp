@@ -2,9 +2,9 @@ package com.github.jacubsz.sampleapp.listadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.Observable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.jacubsz.sampleapp.BR
 import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
@@ -16,9 +16,13 @@ class ToDoItemsRecyclerViewAdapter(
 ) : RecyclerView.Adapter<ToDoItemsRecyclerViewAdapter.ViewHolder>() {
 
     fun update(newItems: List<ToDoItem>) {
+        val diffUtil = ToDoItemsDiffUtil(dataList, newItems)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+
         dataList.clear()
         dataList.addAll(newItems)
-        notifyDataSetChanged()
+
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,10 +46,9 @@ class ToDoItemsRecyclerViewAdapter(
         val content = ObservableField<String>()
 
         fun bind(item: ToDoItem) {
-            setObservableFieldsFromItem(item)
-            initItemClick()
-            addCallbackOnCheckedChange(item)
             setBindingItem()
+            setObservableFieldsFromItem(item)
+            initItemClick(item)
         }
 
         private fun setObservableFieldsFromItem(item: ToDoItem) {
@@ -53,18 +56,14 @@ class ToDoItemsRecyclerViewAdapter(
             content.set(item.content)
         }
 
-        private fun initItemClick() {
+        private fun initItemClick(item: ToDoItem) {
             binding.root.setOnClickListener {
                 binding.checkbox.toggle()
+                callOnItemClick(item)
             }
-        }
-
-        private fun addCallbackOnCheckedChange(item: ToDoItem) {
-            checked.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-                override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                    callOnItemClick(item)
-                }
-            })
+            binding.checkbox.setOnClickListener {
+                callOnItemClick(item)
+            }
         }
 
         private fun callOnItemClick(item: ToDoItem) {
