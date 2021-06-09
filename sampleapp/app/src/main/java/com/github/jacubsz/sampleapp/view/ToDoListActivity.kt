@@ -23,11 +23,7 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
     ToDoListViewModel::class
 ) {
 
-    private val startAddNewItemActivityForResult = registerForActivityResult(StartActivityForResult()) { activityResult ->
-        if (activityResult.resultCode == RESULT_OK) {
-            viewModel.refreshList()
-        }
-    }
+    private val startAddNewItemActivityForResult = registerForActivityResult(StartActivityForResult()) { }
 
     private val startAboutActivityForResult = registerForActivityResult(StartActivityForResult()) { }
 
