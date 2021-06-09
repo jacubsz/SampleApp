@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 
 class ToDoListViewModel @Inject constructor(
@@ -18,14 +17,8 @@ class ToDoListViewModel @Inject constructor(
     private val toDoItems = BehaviorSubject.create<List<ToDoItem>>()
     val toDoItemsFlowable: Flowable<List<ToDoItem>> = toDoItems.toFlowable(BackpressureStrategy.LATEST)
 
-    private val reloadSignal = PublishSubject.create<Unit>()
-
     override fun init() {
-        loadDataOnStartAndReload()
-    }
-
-    fun refreshList() {
-        reloadSignal.onNext(Unit)
+        subscribeToItemsFromDataSource()
     }
 
     fun updateItem(item: ToDoItem) {
@@ -45,15 +38,13 @@ class ToDoListViewModel @Inject constructor(
     fun insertItem(item: ToDoItem) {
         toDoItemsDataSource.insertItems(listOf(item))
             .dispatch(Thread.IO, Thread.IO)
-            .subscribe { refreshList() }
+            .subscribe()
             .addTo(disposables)
     }
 
-    private fun loadDataOnStartAndReload() {
-        reloadSignal.startWithItem(Unit)
-            .toFlowable(BackpressureStrategy.LATEST)
+    private fun subscribeToItemsFromDataSource() {
+        toDoItemsDataSource.getItems()
             .dispatch(Thread.IO, Thread.IO)
-            .flatMap { toDoItemsDataSource.getItems() }
             .subscribe(toDoItems::onNext)
             .addTo(disposables)
     }
