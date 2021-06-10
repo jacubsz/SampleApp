@@ -2,7 +2,7 @@ package com.github.jacubsz.sampleapp.persistence.database
 
 import android.content.Context
 import androidx.room.Room
-import com.github.jacubsz.sampleapp.persistence.database.migration.MIGRATION_1_2
+import com.github.jacubsz.sampleapp.persistence.database.migration.Migration.Companion.MIGRATION_1_2
 import com.github.jacubsz.sampleapp.persistence.model.ToDoItemDao
 import dagger.Module
 import dagger.Provides

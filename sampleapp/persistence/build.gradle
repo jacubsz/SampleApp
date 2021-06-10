@@ -21,6 +21,10 @@ android {
                 arg("room.schemaLocation", "$projectDir/schemas")
             }
         }
+
+        sourceSets {
+            getByName("androidTest").assets.srcDirs += "$projectDir/schemas"
+        }
     }
 
     buildTypes {
@@ -57,6 +61,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$versions.room"
 
     testImplementation "junit:junit:$versions.junit4"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$versions.mockito"
+    androidTestImplementation "androidx.room:room-testing:$versions.room"
     androidTestImplementation "androidx.test.ext:junit:$versions.junit_ext"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+
 }
