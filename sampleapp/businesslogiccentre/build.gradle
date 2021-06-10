@@ -40,7 +40,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     implementation "androidx.core:core-ktx:$versions.ktx"
     testImplementation "junit:junit:$versions.junit4"
-    androidTestImplementation "androidx.test.ext:junit:$versions.junit_ext"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 
 }
