@@ -30,7 +30,7 @@ internal class AppPersistencePluginTest {
     }
 
     @Test
-    fun mappingGetItemsFromPersistenceToSharedModelInReturnedObject() {
+    fun `mapping a DAO persistence model result in getItems() to shared model`() {
         given(toDoItemDao.getAll())
             .willReturn(Flowable.just(listOf(toDoItemPersistenceMock)))
 
@@ -40,7 +40,7 @@ internal class AppPersistencePluginTest {
     }
 
     @Test
-    fun mappingUpdatedItemFromSharedToPersistenceModelInParameters() {
+    fun `mapping a shared model parameter in update() to persistence model`() {
         given(toDoItemDao.update(toDoItemPersistenceMock)).willReturn(Completable.complete())
 
         val testObservable = appPersistencePlugin.updateItem(toDoItemSharedMock).test()
@@ -49,7 +49,7 @@ internal class AppPersistencePluginTest {
     }
 
     @Test
-    fun mappingInsertAllItemsFromSharedToPersistenceModelInParameters() {
+    fun `mapping shared model parameters in insertAll() to persistence model`() {
         val additionalId = 70010
         val additionalContent = "Unknown mission"
         val toDoItemSharedMock2 = ToDoItemMockBuilder.mockSharedToDoItem(id = additionalId, content = additionalContent)
@@ -66,7 +66,7 @@ internal class AppPersistencePluginTest {
     }
 
     @Test
-    fun mappingDeletedItemFromSharedToPersistenceModelInParameters() {
+    fun `mapping a shared model parameter in delete() to persistence model`() {
         given(toDoItemDao.delete(any())).willReturn(Completable.complete())
 
         val testObservable = appPersistencePlugin.deleteItem(toDoItemSharedMock).test()

@@ -6,7 +6,7 @@ import org.junit.Test
 class ToDoItemMapperKtTest {
 
     @Test
-    fun mappingPersistenceToSharedModel() {
+    fun `mapping an item from persistence to shared model`() {
         testPersistenceToSharedModelMapping(
             persistenceItemId = ToDoItemMockBuilder.TODO_ITEM_MOCK_ID_DEFAULT_VALUE,
             persistenceItemContent = ToDoItemMockBuilder.TODO_ITEM_MOCK_CONTENT_DEFAULT_VALUE,
@@ -18,7 +18,7 @@ class ToDoItemMapperKtTest {
     }
 
     @Test
-    fun mappingPersistenceWithEmptyContentToSharedModel() {
+    fun `mapping an item with empty content from persistence to shared model`() {
         testPersistenceToSharedModelMapping(
             persistenceItemId = ToDoItemMockBuilder.TODO_ITEM_MOCK_ID_DEFAULT_VALUE,
             persistenceItemContent = null,
@@ -30,7 +30,7 @@ class ToDoItemMapperKtTest {
     }
 
     @Test
-    fun mappingPersistenceWithoutCheckedStatusToSharedModel() {
+    fun `mapping an item without checked status from persistence to shared model`() {
         testPersistenceToSharedModelMapping(
             persistenceItemId = ToDoItemMockBuilder.TODO_ITEM_MOCK_ID_DEFAULT_VALUE,
             persistenceItemContent = ToDoItemMockBuilder.TODO_ITEM_MOCK_CONTENT_DEFAULT_VALUE,
@@ -42,7 +42,7 @@ class ToDoItemMapperKtTest {
     }
 
     @Test
-    fun mappingSharedToPersistenceModel() {
+    fun `mapping an item from shared to persistence model`() {
         val persistenceToDoItem = ToDoItemMockBuilder.mockPersistenceToDoItem()
         val sharedToDoItem = ToDoItemMockBuilder.mockSharedToDoItem()
 
