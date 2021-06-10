@@ -57,6 +57,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$versions.room"
 
     testImplementation "junit:junit:$versions.junit4"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$versions.mockito"
     androidTestImplementation "androidx.test.ext:junit:$versions.junit_ext"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 }
