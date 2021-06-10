@@ -9,3 +9,5 @@ Functions:
 1. Undo recently removed item on Snackbar Action
 1. Simple "About" Screen
 
+If you spot some discrepancies between shared model and module-specific model - they are made on purpose to show you that there is a possibility to integrate different approaches.
+If you spot that some tests are duplicated or written with different approach - they show that there are many different ways to achieve a functional test.
