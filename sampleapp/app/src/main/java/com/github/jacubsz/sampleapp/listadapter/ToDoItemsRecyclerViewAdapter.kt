@@ -7,7 +7,7 @@ import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.jacubsz.sampleapp.BR
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 import com.github.jacubsz.sampleapp.databinding.ItemTodoBinding
 
 class ToDoItemsRecyclerViewAdapter(

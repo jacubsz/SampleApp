@@ -1,6 +1,6 @@
-package com.github.jacubsz.sampleapp.businesslogiccentre.datasource
+package com.github.jacubsz.sampleapp.contract.datasource
 
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 

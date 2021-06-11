@@ -1,6 +1,6 @@
 package com.github.jacubsz.sampleapp.persistence.plugin
 
-import com.github.jacubsz.sampleapp.businesslogiccentre.datasource.ToDoItemsDataSource
+import com.github.jacubsz.sampleapp.contract.datasource.ToDoItemsDataSource
 import com.github.jacubsz.sampleapp.persistence.database.ToDoPersistenceModule
 import dagger.Binds
 import dagger.Module

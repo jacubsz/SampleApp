@@ -17,7 +17,7 @@ internal class ToDoItemMockBuilder {
             id: Int? = TODO_ITEM_MOCK_ID_DEFAULT_VALUE,
             content: String = TODO_ITEM_MOCK_CONTENT_DEFAULT_VALUE,
             checked: Boolean = TODO_ITEM_MOCK_CHECKED_DEFAULT_VALUE
-        ) = com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem(id, content, checked)
+        ) = com.github.jacubsz.sampleapp.contract.model.ToDoItem(id, content, checked)
 
     }
 }
