@@ -2,8 +2,8 @@ package com.github.jacubsz.sampleapp.viewmodel
 
 import androidx.databinding.ObservableField
 import com.github.jacubsz.sampleapp.R
-import com.github.jacubsz.sampleapp.businesslogiccentre.datasource.ToDoItemsDataSource
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.datasource.ToDoItemsDataSource
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 import com.github.jacubsz.sampleapp.rxutils.Thread
 import com.github.jacubsz.sampleapp.rxutils.dispatch
 import io.reactivex.rxjava3.core.Observable

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.jacubsz.sampleapp.R
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 import com.github.jacubsz.sampleapp.databinding.ActivityTodoListBinding
 import com.github.jacubsz.sampleapp.listadapter.SwipeToDeleteCallback
 import com.github.jacubsz.sampleapp.listadapter.ToDoItemsRecyclerViewAdapter

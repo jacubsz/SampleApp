@@ -1,4 +1,4 @@
-package com.github.jacubsz.sampleapp.businesslogiccentre.model
+package com.github.jacubsz.sampleapp.contract.model
 
 data class ToDoItem(
     val id: Int?,

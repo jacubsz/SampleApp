@@ -44,7 +44,7 @@ android {
 
 dependencies {
 
-    api project(":businesslogiccentre")
+    api project(':contract')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "androidx.core:core-ktx:$versions.ktx"

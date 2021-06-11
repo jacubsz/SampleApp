@@ -1,7 +1,7 @@
 package com.github.jacubsz.sampleapp.listadapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 
 class ToDoItemsDiffUtil(
     private val oldItems: List<ToDoItem>,

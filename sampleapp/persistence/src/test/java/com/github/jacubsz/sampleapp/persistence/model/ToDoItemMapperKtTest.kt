@@ -64,7 +64,7 @@ class ToDoItemMapperKtTest {
             persistenceItemChecked
         )
 
-        val sharedToDoItem = com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem(
+        val sharedToDoItem = com.github.jacubsz.sampleapp.contract.model.ToDoItem(
             sharedModelItemId,
             sharedModelItemContent,
             sharedModelItemChecked

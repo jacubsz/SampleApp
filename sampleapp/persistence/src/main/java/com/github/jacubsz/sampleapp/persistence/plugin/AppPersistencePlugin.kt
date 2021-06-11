@@ -1,7 +1,7 @@
 package com.github.jacubsz.sampleapp.persistence.plugin
 
-import com.github.jacubsz.sampleapp.businesslogiccentre.datasource.ToDoItemsDataSource
-import com.github.jacubsz.sampleapp.businesslogiccentre.model.ToDoItem
+import com.github.jacubsz.sampleapp.contract.datasource.ToDoItemsDataSource
+import com.github.jacubsz.sampleapp.contract.model.ToDoItem
 import com.github.jacubsz.sampleapp.persistence.model.ToDoItemDao
 import com.github.jacubsz.sampleapp.persistence.model.toToDoItem
 import io.reactivex.rxjava3.core.Completable
