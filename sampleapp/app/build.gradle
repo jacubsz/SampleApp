@@ -16,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        configurations {
+            androidTestImplementation.setCanBeResolved(true)
+        }
     }
 
     buildFeatures {
@@ -58,6 +61,9 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxkotlin:$versions.rxkotlin"
 
     testImplementation "junit:junit:$versions.junit4"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$versions.mockito"
+
+    androidTestImplementation "io.mockk:mockk-android:$versions.mockk_android"
     androidTestImplementation "androidx.test.ext:junit:$versions.junit_ext"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 }
