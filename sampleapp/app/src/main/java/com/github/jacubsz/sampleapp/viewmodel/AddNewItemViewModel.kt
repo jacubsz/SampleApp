@@ -8,6 +8,7 @@ import com.github.jacubsz.sampleapp.rxutils.Thread
 import com.github.jacubsz.sampleapp.rxutils.dispatch
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.addTo
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 
@@ -25,7 +26,7 @@ class AddNewItemViewModel @Inject constructor(
 
     fun onAddNewItemClick() {
         if (content.get().isNullOrBlank()) {
-            errorMessage.set(R.string.add_new_item_error)
+            errorMessage.set(R.string.add_new_item_missing_content_error)
         } else {
             errorMessage.set(null)
             content.get()?.let {
@@ -33,7 +34,10 @@ class AddNewItemViewModel @Inject constructor(
                 toDoItemsDataSource
                     .insertItems(listOf(newItem))
                     .dispatch(Thread.IO, Thread.IO)
-                    .subscribe { newItemAddedSubject.onNext(Unit) }
+                    .subscribeBy(
+                        onComplete = { newItemAddedSubject.onNext(Unit) },
+                        onError = { errorMessage.set(R.string.add_new_item_generic_error) }
+                    )
                     .addTo(disposables)
             }
         }
