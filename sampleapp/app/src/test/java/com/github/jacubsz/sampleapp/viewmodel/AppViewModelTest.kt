@@ -1,14 +1,14 @@
 package com.github.jacubsz.sampleapp.viewmodel
 
-import com.github.jacubsz.sampleapp.RxTest
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.kotlin.verify
 import java.util.concurrent.TimeUnit
 
-class AppViewModelTest : RxTest() {
+class AppViewModelTest {
 
     private val testViewModel = object : AppViewModel() {
 
@@ -22,8 +22,14 @@ class AppViewModelTest : RxTest() {
 
     @Test
     fun `onCleared clears observables and disposes them`() {
+        val testScheduler = TestScheduler()
         val testViewModelSpy = Mockito.spy(testViewModel)
-        val testDisposable = Observable.just(Unit).delay(50000, TimeUnit.SECONDS).subscribe()
+        val testDisposable = Observable.just(Unit)
+            .observeOn(testScheduler)
+            .subscribeOn(testScheduler)
+            .delay(50000, TimeUnit.SECONDS)
+            .subscribe()
+
         testViewModelSpy.getCompositeDisposables().add(testDisposable)
 
         testViewModelSpy.init()
