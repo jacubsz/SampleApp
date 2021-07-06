@@ -88,7 +88,7 @@ class ToDoListActivity : AppActivity<ActivityTodoListBinding, ToDoListViewModel>
             )
             .run {
                 setAction(R.string.deleted_item_undo_button_label) {
-                    toDoItemsRecyclerViewAdapter.getLastDeletedItem()?.let { toDoItem ->
+                    toDoItemsRecyclerViewAdapter.lastDeletedItem?.let { toDoItem ->
                         viewModel.insertItem(toDoItem)
                     }
                 }

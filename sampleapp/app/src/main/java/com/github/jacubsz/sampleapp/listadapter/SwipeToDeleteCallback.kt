@@ -10,6 +10,8 @@ class SwipeToDeleteCallback(
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        adapter.deleteItemWithBackup(viewHolder.adapterPosition)
+        if (direction == ItemTouchHelper.END) {
+            adapter.deleteItemWithBackup(viewHolder.adapterPosition)
+        }
     }
 }
