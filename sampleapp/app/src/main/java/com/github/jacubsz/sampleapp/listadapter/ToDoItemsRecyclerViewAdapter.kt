@@ -16,7 +16,8 @@ class ToDoItemsRecyclerViewAdapter(
     private val onItemSwipedOut: (ToDoItem) -> Unit = { _ -> }
 ) : RecyclerView.Adapter<ToDoItemsRecyclerViewAdapter.ViewHolder>() {
 
-    private var lastDeletedItemBackup: ToDoItem? = null
+    var lastDeletedItem: ToDoItem? = null
+        private set
 
     fun update(newItems: List<ToDoItem>) {
         val diffUtil = ToDoItemsDiffUtil(dataList, newItems)
@@ -44,11 +45,9 @@ class ToDoItemsRecyclerViewAdapter(
         val itemBackup = dataList[position]
         dataList.removeAt(position)
         notifyItemRemoved(position)
-        lastDeletedItemBackup = itemBackup
+        lastDeletedItem = itemBackup
         onItemSwipedOut(itemBackup)
     }
-
-    fun getLastDeletedItem(): ToDoItem? = lastDeletedItemBackup
 
     class ViewHolder(
         private val binding: ItemTodoBinding,
