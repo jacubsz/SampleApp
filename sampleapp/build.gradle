@@ -21,6 +21,7 @@ buildscript {
     versions.rxandroid = "3.0.0"
     versions.rxjava = "3.0.13"
     versions.rxkotlin = "3.0.1"
+    versions.uiautomator = "2.2.0"
 
     repositories {
         google()
