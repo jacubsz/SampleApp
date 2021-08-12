@@ -2,3 +2,4 @@ rootProject.name = "SampleApplication"
 include ':app'
 include ':contract'
 include ':persistence'
+include ':networking'
