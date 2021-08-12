@@ -1,5 +1,6 @@
 package com.github.jacubsz.sampleapp.dagger
 
+import com.example.networking.plugin.AppNetworkingPluginModule
 import com.github.jacubsz.sampleapp.SampleApplication
 import com.github.jacubsz.sampleapp.persistence.plugin.AppPersistencePluginModule
 import com.github.jacubsz.sampleapp.view.ActivityModule
@@ -19,7 +20,7 @@ import javax.inject.Singleton
         ActivityModule::class,
         ViewModelModule::class,
 
-        AppPersistencePluginModule::class
+        AppNetworkingPluginModule::class
     ]
 )
 interface AppComponent : AndroidInjector<SampleApplication> {
