@@ -1,6 +1,8 @@
 package com.example.networking.model;
 
- public class ToDoItem {
+import java.util.Objects;
+
+public class ToDoItem {
 
     private Integer id;
     private String content;
@@ -36,5 +38,18 @@ package com.example.networking.model;
 
     public void setChecked(Boolean checked) {
         this.checked = checked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ToDoItem toDoItem = (ToDoItem) o;
+        return Objects.equals(id, toDoItem.id) && Objects.equals(content, toDoItem.content) && Objects.equals(checked, toDoItem.checked);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, checked);
     }
 }

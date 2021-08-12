@@ -16,6 +16,7 @@ buildscript {
     versions.kotlin = "1.5.21"
     versions.ktx = "1.6.0"
     versions.mockito = "3.2.0"
+    versions.mockito_core = "3.11.2"
     versions.mockk_android = "1.12.0"
     versions.retrofit = "2.9.0"
     versions.room = "2.3.0"
